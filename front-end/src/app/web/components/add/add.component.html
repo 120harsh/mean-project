@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <form class="row g-3 mt-4" [formGroup]="form">
+        <div class="form-group col-md-6 mb-3">
+        <label for="name">Name</label>
+        <input type="text" formControlName="full_name" class="form-control" id="name" placeholder="Enter name" />
+        </div>
+        <div class="form-group col-md-6 mb-3">
+        <label for="email">Email address</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email" />
+        </div>
+        <div class="form-group col-md-6 mb-3">
+        <label for="phone">Mobile No</label>
+        <input type="number" formControlName="mobile_no" class="form-control" id="phone" placeholder="Enter mobile number" />
+        </div>
+         <div class="form-group col-md-6 mb-3">
+        <label for="age">Age</label>
+        <input type="number" formControlName="age" class="form-control" id="age" placeholder="Enter age" />
+        </div>
+        <div class="form-group col-md-6 mb-3">
+        <label for="dob">Date Of Birth</label>
+        <input type="date" formControlName="dob" class="form-control" id="dob" placeholder="Enter dob" />
+        </div>
+         <div class="form-group col-md-6 mb-3">
+        <label for="phone">Profile</label>
+        <input type="text" formControlName="profile" class="form-control" id="profile" placeholder="Enter profile" />
+        </div>
+         <div class="form-group col-md-6 mb-3">
+        <label for="address">Address</label>
+        <textarea type="text" formControlName="address" class="form-control" id="address" placeholder="Enter address" ></textarea>
+        </div>
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary w-auto" [disabled]="form.invalid">Submit</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="table-responsive shadow">
+        {{userdetails|json}}
+        <table class="table">
+            <thead class="bg-secondary">
+                <tr class="bg-secondary">
+                    <th scope="col" class="bg-secondary text-white">S.No</th>
+                    <th scope="col" class="bg-secondary text-white">Full Name</th>
+                    <th scope="col" class="bg-secondary text-white">Email</th>
+                    <th scope="col" class="bg-secondary text-white">Mobile No</th>
+                    <th scope="col" class="bg-secondary text-white">Age</th>
+                    <th scope="col" class="bg-secondary text-white">Request</th>
+                    <th scope="col" class="bg-secondary text-white">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+               @for (item of allUsers; track $index) {
+                <tr>
+                    <td> {{$index+1}} </td>
+                    <td> {{item.full_name}} </td>
+                    <td> {{item.email}} </td>
+                    <td> {{item.mobile_no}} </td>
+                    <td> {{item.age}} </td>
+                    <td> 
+
+                        <ng-template [ngIf]="item.status!=null">
+                             <span class="text-white p-1 b-r-1 rounded-1" [ngClass]="item.status==1?'bg-primary':item.status == 2 ? 'bg-primary':item.status == 3 || item.status == 0?'bg-secondary':'bg-success'"> {{getText(item.status,item.sender_id,item.recieved_id)}}  </span> 
+                        </ng-template>
+
+                        <ng-template [ngIf]="item.status==null">
+                            <span class="text-white p-1 b-r-1 rounded-1 bg-secondary">Not Send</span>
+                        </ng-template>
+                        
+                       
+                    
+                    </td>
+                    <td> 
+
+                        <!-- {{item.status}}  {{this.userdetails.id}} {{item.recieved_id}} -->
+
+                        @if(item.recieved_id == userdetails.id && item.status == 1){
+                             <button class="btn btn-sm btn-success me-2">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        }
+                        
+                        @if (item.status == 0 || item.status == null) {
+                            <button class="btn btn-sm btn-secondary me-2" (click)="openModel(content())">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        }
+                         @if (item.status == 1) {
+                           <button class="btn btn-sm btn-secondary me-2"> <span class="fa fa-cancel"></span> </button>
+                        }
+                         @if (item.status == 2) {
+                           <button class="btn btn-sm btn-success me-2" (click)="openChat(userdetails.id)"><i class="fa-solid fa-comments"></i></button> 
+                         }
+                        @if((item.status == 1 && (item.recieved_id == this.userdetails.id))){
+                              <button class="btn btn-sm btn-secondary me-2">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        }
+                    </td>
+                </tr>
+               }
+            </tbody>
+        </table>
+    </div>
+
+   
+</div>
